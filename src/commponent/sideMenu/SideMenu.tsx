@@ -19,16 +19,15 @@ export const SideMenu: React.FC = () => {
                     key={`sub-menu-${smindex}`}
                     title={<span><GifOutlined />{sm.title}</span>}
                   >
-                    {sm.subMenu.map((sms, smsindex) => (
-                      <Menu.Item
-                        key={`sub-sub-menu-${smsindex}`}
-                        title={<span><GifOutlined />{sms}</span>}
-                      >
-
+                    {sm.subMenu.map((sms, smsindex) => {
+                      return(
+                        <Menu.Item key={`sub-sub-menu-${smsindex}`} >
+                       
+                        <span><GifOutlined />{sms}</span>
+                     
                       </Menu.Item>
-                    ))
-
-                    }
+                      )
+                    })}
                   </Menu.SubMenu>
                 )
               })
