@@ -1,7 +1,7 @@
 import React from 'react';
 // import logo from './logo.svg';
 import styles from './App.module.css';
-import{ Footer , Header , SideMenu,Carousel,ProductCollection } from './commponent'
+import{ Footer , Header , SideMenu,Carousel,ProductCollection,BusinessPartners } from './commponent'
 import {Row,Col,Typography} from 'antd'
 import { productList1,productList2,productList3 } from './mockups'
 import sideImage from './assets/images/sider_2019_12-09.png';
@@ -21,7 +21,6 @@ function App() {
             <Carousel/>
           </Col>
       </Row>
-      </div>
        <ProductCollection
        title={
         <Typography.Title level={3} type="wrning">
@@ -40,13 +39,16 @@ function App() {
        />
              <ProductCollection
        title={
-        <Typography.Title level={3} type="danger">
+        <Typography.Title level={3} type="success">
         国内旅游推荐
           </Typography.Title>}
        sideImage={sideImage3}
        products={productList3}
        />
+       <BusinessPartners/>
+       </div> 
       <Footer />
+      
     </div>
   );
 }
