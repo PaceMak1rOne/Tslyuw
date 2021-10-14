@@ -6,7 +6,7 @@ import { GlobalOutlined } from '@ant-design/icons';
 import { useHistory,useLocation,useParams,useRouteMatch } from 'react-router-dom';
 export const Header: React.FC = () => {
   const history = useHistory();//获取history的数据 导航操作
-  const locatuion = useLocation()//获取location的数据 当前路径的信息
+  const location = useLocation()//获取location的数据 当前路径的信息
   const params = useParams() //获取路由的参数 当前路由传递的值
   const match = useRouteMatch()  //获取当前匹配的数据
   return (
