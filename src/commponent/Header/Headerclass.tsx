@@ -5,8 +5,9 @@ import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 import {withRouter,RouteComponentProps } from 'react-router-dom';
 import store from '../../redux/store'
-import { LanguageState } from '../../redux/languageReducer'
+import { LanguageState } from '../../redux/language/languageReducer'
 import { withTranslation,WithTranslation,Translation } from 'react-i18next'
+import { addLanguageActionCreator,changeLanguageActionCreator } from  '../../redux/language/languageActions'
 // 创建接口继承LanguageState
 interface State extends LanguageState{}
 class HeaderComponent extends Component <
@@ -39,16 +40,12 @@ handleStoreChange = () =>{
     //创建一个常量来当做action
      if(e.key  === "new" ){
        //处理添加新语言action
-      const action = {
-        type:"add_language",
-        payload:{code:"add_language",name:"新语言"}
-      }
+      const action = 
+      addLanguageActionCreator("新语言","add_language")
       store.dispatch(action)
      }else{
-      const action = {
-        type:"change_language",
-        payload:e.key
-      }
+      const action = 
+      changeLanguageActionCreator(e.key)
       store.dispatch(action)
      }
   }
