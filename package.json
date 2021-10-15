@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-redux": "^7.1.19",
     "typescript-plugin-css-modules": "^3.4.0"
   }
 }
