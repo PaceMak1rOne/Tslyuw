@@ -1,14 +1,14 @@
 import styles from './App.module.css';
 // import {Home} from './pages/index'
 import { BrowserRouter,Route,Switch } from "react-router-dom";
-import {HomePages,Register,SignIn,DetailPage} from './pages'
+import {HomePage,Register,SignIn,DetailPage} from './pages'
 function App() {
   return (
     <div className={styles.App}>
     <BrowserRouter>
   <Switch>
     {/* 首页 */}
-  <Route exact path="/" component={HomePages}/>
+  <Route exact path="/" component={HomePage}/>
   <Route path="/signIn" component={SignIn} />
   <Route path="/register" component={Register} />
   <Route path="/detail/:touristRouteId" component={DetailPage}/>

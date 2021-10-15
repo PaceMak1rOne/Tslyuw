@@ -1,4 +1,4 @@
-
+import i18n from "i18next"
 export interface LanguageState{
     language:"en"|"zh",
     languageList:{name:string,code:string}[]
@@ -15,10 +15,11 @@ const defaultState: LanguageState ={
 
 export default (state=defaultState,action:any) =>{
     switch(action.type){
-        case "add_language" ://对新的语言进行增加
-            return {...state,languageList:[...state.languageList,action.payload]} //对当前语言列表进行添加进行数组合并如何对象合并
+        case "add_language" ://对新的语言进行增加 
+        return {...state,languageList:[...state.languageList,action.payload]} //对当前语言列表进行添加进行数组合并如何对象合并
         case "change_language"://对当前传过来的action传的值进行判断
-            return {...state,language :action.payload}//使用对象合并对当前的state进行合并更改
+        i18n.changeLanguage(action.payload);       
+        return {...state,language :action.payload}//使用对象合并对当前的state进行合并更改
             default :return state
     }
 }
