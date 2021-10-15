@@ -4,12 +4,21 @@ import logo from '../../assets/logo.svg';
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 import {withRouter,RouteComponentProps } from 'react-router-dom';
-class HeaderComponent extends Component<RouteComponentProps> {
+import store from '../../redux/store'
+import { LanguageState } from '../../redux/languageReducer'
+// 创建接口继承LanguageState
+interface State extends LanguageState{}
+class HeaderComponent extends Component<RouteComponentProps,State> {
+//进行获取全局store
+  constructor(props:any){
+    super(props);
+     const storeState = store.getState();
+     this.state={
+      language : storeState.language,
+      languageList:storeState.languageList
 
-  // const history = useHistory();//获取history的数据 导航操作
-  // const location = useLocation()//获取location的数据 当前路径的信息
-  // const params = useParams() //获取路由的参数 当前路由传递的值
-  // const match = useRouteMatch()  //获取当前匹配的数据
+     }
+  }
   render(){
     const {history} = this.props  
     return (
@@ -22,15 +31,21 @@ class HeaderComponent extends Component<RouteComponentProps> {
             让旅游更幸福
           </Typography.Text>
           {/* 下拉菜单 */}
-          <Dropdown.Button style={{ marginLeft: 15 }} overlay={
+          <Dropdown.Button style={{ marginLeft: 15 }} 
+          overlay={
             <Menu>
-              <Menu.Item>中文</Menu.Item>
-              <Menu.Item>English</Menu.Item>
+              {/* 进行循环里吗的语言 */}
+              {
+                this.state.languageList.map((value)=>{
+                  return <Menu.Item key={value.code}>{value.name}</Menu.Item>
+                })
+              }
+              
             </Menu>
           }
             icon={<GlobalOutlined />}
           >
-            语言
+            {this.state.language === "zh" ? "中文" : "English"}
           </Dropdown.Button>
           <Button.Group className={styles["button-group"]}>
             <Button onClick={()=>history.push("register")}>注册</Button>
