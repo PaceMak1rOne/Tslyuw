@@ -16,16 +16,37 @@ class HeaderComponent extends Component<RouteComponentProps,State> {
      this.state={
       language : storeState.language,
       languageList:storeState.languageList
-     }
-  }
+     };
+     //订阅就是当全局store发生改变时以回调函数的方式进行数据更新
+     //  使用subscribe进行订阅store进行数据的推送完成更改
+     store.subscribe(this.handleStoreChange);
+  } 
+  //改变全局store
+handleStoreChange = () =>{
+  const storetate = store.getState();
+  //进行对新语言的增加
+       this.setState({
+         language:storetate.language, 
+         languageList:storetate.languageList
+        });
+}
   //语言切换
   MenuhandleClick = (e:any) =>{
     //创建一个常量来当做action
-    const action = {
-      type:"change_language",
-      payload:e.key
-    }
-    store.dispatch(action)
+     if(e.key  === "new" ){
+       //处理添加新语言action
+      const action = {
+        type:"add_language",
+        payload:{code:"add_language",name:"新语言"}
+      }
+      store.dispatch(action)
+     }else{
+      const action = {
+        type:"change_language",
+        payload:e.key
+      }
+      store.dispatch(action)
+     }
   }
   render(){
     const {history} = this.props  
@@ -48,8 +69,8 @@ class HeaderComponent extends Component<RouteComponentProps,State> {
                   return <Menu.Item key={value.code}>{value.name}</Menu.Item>
                 })
               }
-              
-            </Menu>
+              <Menu.Item key = {"new"}>添加新语言</Menu.Item>
+              </Menu>
           }
             icon={<GlobalOutlined />}
           >
