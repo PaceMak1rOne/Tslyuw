@@ -16,8 +16,16 @@ class HeaderComponent extends Component<RouteComponentProps,State> {
      this.state={
       language : storeState.language,
       languageList:storeState.languageList
-
      }
+  }
+  //语言切换
+  MenuhandleClick = (e:any) =>{
+    //创建一个常量来当做action
+    const action = {
+      type:"change_language",
+      payload:e.key
+    }
+    store.dispatch(action)
   }
   render(){
     const {history} = this.props  
@@ -33,7 +41,7 @@ class HeaderComponent extends Component<RouteComponentProps,State> {
           {/* 下拉菜单 */}
           <Dropdown.Button style={{ marginLeft: 15 }} 
           overlay={
-            <Menu>
+            <Menu onClick={this.MenuhandleClick}>
               {/* 进行循环里吗的语言 */}
               {
                 this.state.languageList.map((value)=>{
