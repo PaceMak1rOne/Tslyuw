@@ -4,12 +4,12 @@ import logo from '../../assets/logo.svg';
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import store, { RooutState } from '../../redux/store'
+import store, { RootState } from '../../redux/store'
 import { withTranslation, WithTranslation } from 'react-i18next'
 import { addLanguageActionCreator, changeLanguageActionCreator } from '../../redux/language/languageActions'
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux'
-const mapStateToProps = (state: RooutState) => {
+const mapStateToProps = (state: RootState) => {
   return {
     language: state.language,
     languageList: state.languageList
